@@ -11,8 +11,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     var favoritoValidation = 0
     let contexto = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-   
-    
     
     var buttonFavorite: UIButton = {
         let button = UIButton()
@@ -40,7 +38,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     var priceUilabel: UILabel = {
         let label = UILabel()
-        //        label.text = "$54,382"
         label.font = .systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -56,7 +53,6 @@ class CollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupUiCell()
-        
     }
     
     required init(coder: NSCoder) {
@@ -80,13 +76,8 @@ class CollectionViewCell: UICollectionViewCell {
             
             subTitleUilabel.topAnchor.constraint(equalTo: nameUilabel.bottomAnchor, constant: 1),
             subTitleUilabel.leadingAnchor.constraint(equalTo: imageBtc.leadingAnchor, constant: 70),
-            //            subTitleUilabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: ),
-            
-            //            priceUilabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             priceUilabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            //            priceUilabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1),
-            
-            //            buttonFavorite.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+
             buttonFavorite.heightAnchor.constraint(equalToConstant: 30),
             buttonFavorite.widthAnchor.constraint(equalToConstant: 30),
             buttonFavorite.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
@@ -107,10 +98,8 @@ class CollectionViewCell: UICollectionViewCell {
         if let formattedNumber = formatter.string(from: NSNumber(value: number)) {
             priceUilabel.text = "$\(formattedNumber)"
         }
-        
     }
-    
-    
+        
     @objc func favorito(){
         
         let monedaFavorita = BtcModel(context: self.contexto)
@@ -118,8 +107,7 @@ class CollectionViewCell: UICollectionViewCell {
         monedaFavorita.symbol = subTitleUilabel.text
         monedaFavorita.priceUsd = priceUilabel.text
         guardar()
-    
-        
+
         if favoritoValidation == 0 {
             favoritoValidation = 1
             buttonFavorite.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -128,7 +116,6 @@ class CollectionViewCell: UICollectionViewCell {
         } else {
             buttonFavorite.setImage(UIImage(systemName: "heart"), for: .normal)
             favoritoValidation = 0
-//            contexto.delete(<#NSManagedObject#>)
         }
     }
     func guardar() {

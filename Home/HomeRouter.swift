@@ -32,7 +32,10 @@ class HomeRouter {
 
 //MARK: - Router Metods
 extension HomeRouter: HomeWireframeProtocol {
-    
+    func nextView() {
+        let vc = FavoriteRouter.createModule()
+        viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 //MARK: - Private functions

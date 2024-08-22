@@ -16,8 +16,6 @@ class HomeInteractor: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     private var dataTask : URLSessionDataTask?
         private var responseData : Data = Data()
         private var httpResponse : HTTPURLResponse?
-    
-
 }
 
 //MARK: - Interactor Methods
@@ -25,7 +23,6 @@ extension HomeInteractor: HomeInteractorProtocol {
     func getInitData() {
         
             let urlString = "https://api.coincap.io/v2/assets"
-            
             if let url = URL(string: urlString) {
                 if let data = try? Data(contentsOf: url){
                     let decodificador = JSONDecoder()

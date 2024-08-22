@@ -20,6 +20,16 @@ class HomeViewController: UIViewController {
     //MARK: - Properties
     var btcInfo: [btcDetail] = []
     
+    private lazy var buttonFav : UIButton = {
+        let button = UIButton()
+        button.setTitle("Favorito", for: .normal)
+        button.backgroundColor = .systemGray
+        button.layer.cornerRadius = 2
+        button.addTarget(self, action: #selector(navcontroller), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     lazy private var infoLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20)
@@ -49,7 +59,6 @@ class HomeViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.itemSize = .init(width: width-50, height: 100)
         layout.minimumLineSpacing = 15
-//        layout.minimumInteritemSpacing = 20
         let collectioView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectioView.translatesAutoresizingMaskIntoConstraints = false
         return collectioView
@@ -82,6 +91,7 @@ extension HomeViewController: HomeViewProtocol {
         view.addSubview(collectionView)
         view.addSubview(infoLabel)
         view.addSubview(priceLabel)
+        view.addSubview(buttonFav)
         
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
@@ -89,7 +99,6 @@ extension HomeViewController: HomeViewProtocol {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         
         NSLayoutConstraint.activate([
-        
             collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: height/2-150),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -99,10 +108,12 @@ extension HomeViewController: HomeViewProtocol {
             infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             
             priceLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 10),
-            priceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+            priceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             
-                   
-
+            buttonFav.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor, constant: 200),
+            buttonFav.widthAnchor.constraint(equalToConstant: 100),
+            buttonFav.heightAnchor.constraint(equalToConstant: 30),
+            buttonFav.topAnchor.constraint(equalTo: view.topAnchor, constant: 200)
         ])
     }
     
@@ -125,6 +136,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.layer.masksToBounds = true
         return cell
     }
-    
+    @objc func navcontroller(){
+        presenter?.nextView()
+    }
 }
 

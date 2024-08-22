@@ -26,6 +26,12 @@ class HomePresenter {
 
 //MARK: - Presenter Methods
 extension HomePresenter: HomePresenterProtocol {
+    func nextView() {
+        router.nextView()
+    }
+    
+
+    
  
     func info(datos: [btcDetail]) {
         view?.info(datos: datos)
@@ -41,5 +47,5 @@ extension HomePresenter: HomePresenterProtocol {
 
 //MARK: - Private functions
 extension HomePresenter {
-    
+
 }

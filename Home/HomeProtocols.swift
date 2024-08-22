@@ -12,12 +12,13 @@ import Foundation
 
 //MARK: Wireframe -
 protocol HomeWireframeProtocol: AnyObject {
-
+    func nextView()
 }
 //MARK: Presenter -
 protocol HomePresenterProtocol: AnyObject {
     func info(datos: [btcDetail])
     func getInitData()
+    func nextView()
 }
 
 //MARK: Interactor -

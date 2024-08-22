@@ -43,7 +43,6 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     //MARK: - Methods
-    
     func setupUI() {
         view.addSubview(tableView)
         
@@ -75,8 +74,6 @@ class FavoriteViewController: UIViewController, UITableViewDataSource, UITableVi
         }
       
     }
-    
-    
 }
 
 //MARK: - View Methods
